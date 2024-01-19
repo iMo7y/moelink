@@ -9,7 +9,7 @@ Moelink is a modern social-like web app with a stunning UI, providing a native m
 ![post](https://github.com/iMo7y/moelink/assets/141570244/d09d3a0f-6482-43cb-b14f-aa5397317692)
 
 
-Try the App: [Moelink](#)
+Try the App: [Moelink](https://moelink-jet.vercel.app/)
 
 ## 🧐 Features
 
