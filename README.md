@@ -7,7 +7,8 @@ Moelink is a modern social-like web app with a stunning UI, providing a native m
 ## 🚀 Demo
 
 
-Try the App: [Moelink](#)
+
+Try the App: [Moelink](https://moelink-jet.vercel.app/)
 
 ## 🧐 Features
 
@@ -22,7 +23,6 @@ Moelink offers a variety of amazing features to enhance your experience:
 ☑️- 💻 Fully Responsive
 ☑️- Profile details page
 - (yet to be implemented; stay tuned!! 😉)
-☐- Profile details page
 ☐- Top creator pages
 ☐- Follow and Unfollow functionality
 ☐- Comment in posts
