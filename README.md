@@ -6,6 +6,8 @@ Moelink is a modern social-like web app with a stunning UI, providing a native m
 
 ## 🚀 Demo
 
+![post](https://github.com/iMo7y/moelink/assets/141570244/d09d3a0f-6482-43cb-b14f-aa5397317692)
+
 
 Try the App: [Moelink](#)
 
@@ -22,7 +24,6 @@ Moelink offers a variety of amazing features to enhance your experience:
 ☑️- 💻 Fully Responsive
 ☑️- Profile details page
 - (yet to be implemented; stay tuned!! 😉)
-☐- Profile details page
 ☐- Top creator pages
 ☐- Follow and Unfollow functionality
 ☐- Comment in posts
