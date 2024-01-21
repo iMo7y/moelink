@@ -5,6 +5,7 @@ import { useUserContext } from "@/context/AuthContext";
 import { useDeletePost, useGetPostById } from "@/lib/react-query/queriesAndMutations";
 import { multiFormatDateString } from "@/lib/utils";
 import { useParams, Link } from "react-router-dom";
+import Linkify from 'react-linkify';
 
 const PostDetails = () => {
   const { id } = useParams();
@@ -90,7 +91,9 @@ const PostDetails = () => {
             <hr className="border w-full border-dark-4/80" />
 
             <div className="flex flex-col flex-1 w-full small-medium lg:base-regular">
-              <p>{post?.caption}</p>
+              <p>
+              <Linkify>{post?.caption}</Linkify>
+                </p>
               <ul className="flex gap-1 mt-2">
                 {post?.tags.map((tag: string) => (
                   <li key={tag} className="text-light-3">
