@@ -14,30 +14,14 @@ Try the App: [Moelink](https://moelink-jet.vercel.app/)
 
 Moelink offers a variety of amazing features to enhance your experience:
 
-☑️- 💯 Infinite, Smooth Scroll
-☑️- 🎩 Upload your Posts
-☑️- 👾 Like and Save posts
-☑️- 📦 Explore
-☑️- 🔖 Edit Posts
-☑️- 🍭 Search posts
-☑️- 💻 Fully Responsive
-☑️- Profile details page
-- (yet to be implemented; stay tuned!! 😉)
-☐- Top creator pages
-☐- Follow and Unfollow functionality
-☐- Comment in posts
-☐- Stories
-☐- Post reactions
-☐- Verfied users
-=======
-- ☑️ Infinite, Smooth Scroll
-- ☑️ Upload your Posts
-- ☑️ Like and Save posts
-- ☑️ Explore
-- ☑️ Edit Posts
-- ☑️ Search posts
-- ☑️ Fully Responsive
-- ☑️ Profile details page (yet to be implemented; stay tuned!! 😉)
+- ☑️ 💯 Infinite, Smooth Scroll
+- ☑️ 🎩 Upload your Posts
+- ☑️ 👾 Like and Save posts
+- ☑️ 📦 Explore
+- ☑️ 🔖 Edit Posts
+- ☑️ 🍭 Search posts
+- ☑️ 💻 Fully Responsive
+-  (yet to be implemented; stay tuned!! 😉)
 - ☐ Top creator pages
 - ☐ Follow and Unfollow functionality
 - ☐ Comment in posts
