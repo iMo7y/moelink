@@ -34,7 +34,7 @@ const Explore = () => {
       <div className="explore-inner_container">
         <h2 className="h3-bold md:h2-bold w-full">Search Posts</h2>
         <div className="flex gap-1 px-4 w-full rounded-lg bg-light-2">
-          <img src="/assets/icons/search.svg" width={24} height={24} alt="search" />
+          <img src="/assets/icons/search1.gif" width={35} height={24} alt="search" />
           <Input
             type="text"
             placeholder="Search"
