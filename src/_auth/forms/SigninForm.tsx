@@ -1,3 +1,4 @@
+import { useState } from "react";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -22,8 +23,9 @@ const SigninForm = () => {
   const { toast } = useToast();
   const { checkAuthUser, isLoading: isUserLoading } = useUserContext();
   const navigate = useNavigate();
-
   const { mutateAsync: signInAccount } = useSignInAccount();
+
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
 
   // Define your form.
   const form = useForm<z.infer<typeof SigninValidation>>({
@@ -36,17 +38,17 @@ const SigninForm = () => {
 
   // Define a submit handler.
   async function onSubmit(values: z.infer<typeof SigninValidation>) {
+    setIsButtonClicked(true);
+
     const session = await signInAccount({
       email: values.email,
       password: values.password
     });
-
     if (!session) {
       return toast({ title: 'Sign in failed. Please try again.' });
     }
 
     const isLoggedIn = await checkAuthUser();
-
     if (isLoggedIn) {
       form.reset();
       navigate('/');
@@ -59,10 +61,8 @@ const SigninForm = () => {
     <Form {...form}>
       <div className="sm:w-420 flex-center flex-col">
         <img src="/assets/images/logo.png" alt="logo" />
-
         <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12" style={{ color: "#5cbdea" }}>Log in to your account</h2>
         <p className="text-light-3 small-medium md:base-regular mt-12" style={{ color: "#5cbdea" }}>Welcome back! please enter your details</p>
-
         <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5 w-full mt-4">
           <FormField
             control={form.control}
@@ -73,7 +73,6 @@ const SigninForm = () => {
                 <FormControl>
                   <Input type="email" placeholder="Enter your Email" className="shad-input" {...field} />
                 </FormControl>
-
                 <FormMessage />
               </FormItem>
             )}
@@ -87,17 +86,24 @@ const SigninForm = () => {
                 <FormControl>
                   <Input type="password" placeholder="********" className="shad-input" {...field} />
                 </FormControl>
-
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit" className="shad-button_primary">
+          <Button type="submit" className={`shad-button_primary ${isButtonClicked ? 'bg-white' : ''}`}>
             {isUserLoading ? (
               <div className="flex-center gap-2">
                 <Loader /> Loading...
               </div>
-            ) : "Sign in"}
+            ) : (
+              <>
+                {isButtonClicked ? (
+                  <img src="/assets/icons/fingerprint2.gif" alt="fingerprintgif" width={40} height={40} />
+                ) : (
+                  "Sign in"
+                )}
+              </>
+            )}
           </Button>
           <p className="text-smaill-regular text-dark-2 text-center mt-2">
             Don't have an account?

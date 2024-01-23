@@ -1,3 +1,4 @@
+import { useState } from "react";
 import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -25,6 +26,8 @@ const SignupForm = () => {
   const { mutateAsync: createUserAccount, isPending: isCreatingAccount } = useCreateUserAccount();
   const { mutateAsync: signInAccount } = useSignInAccount();
 
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+
   // Define your form.
   const form = useForm<z.infer<typeof SignupValidation>>({
     resolver: zodResolver(SignupValidation),
@@ -38,23 +41,22 @@ const SignupForm = () => {
 
   // Define a submit handler.
   async function onSubmit(values: z.infer<typeof SignupValidation>) {
-    const newUser = await createUserAccount(values);
+    setIsButtonClicked(true);
 
+    const newUser = await createUserAccount(values);
     if (!newUser) {
-      return toast({ title: ' Sign up failed. Please try again.' });
+      return toast({ title: 'Sign up failed. Please try again.' });
     }
 
     const session = await signInAccount({
       email: values.email,
       password: values.password
     });
-
     if (!session) {
       return toast({ title: 'Sign in failed. Please try again.' });
     }
 
     const isLoggedIn = await checkAuthUser();
-
     if (isLoggedIn) {
       form.reset();
       navigate('/');
@@ -67,10 +69,8 @@ const SignupForm = () => {
     <Form {...form}>
       <div className="sm:w-420 flex-center flex-col">
         <img src="/assets/images/logo.png" alt="logo" />
-
         <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12" style={{ color: "#5cbdea" }}>Create a new account</h2>
         <p className="text-light-3 small-medium md:base-regular mt-12" style={{ color: "#5cbdea" }}>To use MoeLink, please enter your details</p>
-
         <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5 w-full mt-4">
           <FormField
             control={form.control}
@@ -81,7 +81,6 @@ const SignupForm = () => {
                 <FormControl>
                   <Input type="text" placeholder="Enter your Name" className="shad-input" {...field} />
                 </FormControl>
-
                 <FormMessage />
               </FormItem>
             )}
@@ -95,7 +94,6 @@ const SignupForm = () => {
                 <FormControl>
                   <Input type="text" placeholder="Enter your Username" className="shad-input" {...field} />
                 </FormControl>
-
                 <FormMessage />
               </FormItem>
             )}
@@ -109,7 +107,6 @@ const SignupForm = () => {
                 <FormControl>
                   <Input type="email" placeholder="Enter your Email" className="shad-input" {...field} />
                 </FormControl>
-
                 <FormMessage />
               </FormItem>
             )}
@@ -123,17 +120,24 @@ const SignupForm = () => {
                 <FormControl>
                   <Input type="password" placeholder="********" className="shad-input" {...field} />
                 </FormControl>
-
                 <FormMessage />
               </FormItem>
             )}
           />
-          <Button type="submit" className="shad-button_primary">
+          <Button type="submit" className={`shad-button_primary ${isButtonClicked ? 'bg-white' : ''}`}>
             {isCreatingAccount ? (
               <div className="flex-center gap-2">
                 <Loader /> Loading...
               </div>
-            ) : "Sign up"}
+            ) : (
+              <>
+                {isButtonClicked ? (
+                  <img src="/assets/icons/fingerprint2.gif" alt="fingerprintgif" width={40} height={40} />
+                ) : (
+                  "Sign up"
+                )}
+              </>
+            )}
           </Button>
           <p className="text-smaill-regular text-dark-2 text-center mt-2">
             Already have an account?
